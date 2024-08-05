@@ -1,6 +1,16 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+  RedirectToSignIn
+} from "@clerk/nextjs";
+import "./globals.css";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +25,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className={`$inter.className max-w-md m-auto my-8`}>
+        <body>
+          <header className="flex justify-between">
+            <Link href="/" className="font-semibold">
+              elddir
+            </Link>
+            <div>
+              <SignedOut>
+                <SignInButton />
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </div>
+          </header>
+          <SignedIn>
+            <div>{children}</div>
+          </SignedIn>
+          <SignedOut>
+            <RedirectToSignIn />
+          </SignedOut>
+          {/* <footer className="py-8 text-center absolute bottom-0 left-0 w-full">Made by Bek Slambek</footer> */}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

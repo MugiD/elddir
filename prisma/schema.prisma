@@ -9,5 +9,32 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
+
+//AFTER EVERY CHANGE IN THIS FILE, RUN `prisma db push` or `prisma migrate dev` TO UPDATE THE CLIENT
+
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String   @db.VarChar(255)
+  description   String?
+  published Boolean  @default(false)
+  authorEmail String
+  influencers Influencers[]
+  @@unique([authorEmail, title])
+}
+
+model Influencers {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  username  String   @db.VarChar(255) 
+  category  Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+}
+
+
