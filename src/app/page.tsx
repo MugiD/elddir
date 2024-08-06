@@ -8,12 +8,22 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link";
 import { currentUser } from "@clerk/nextjs/server";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 export default async function Home() {
   const posts = await prisma.category.findMany();
   const user = await currentUser();
 
   const emailAddress = user?.emailAddresses[0].emailAddress || "anonymous";
+  console.log(posts)
 
   return (
     <main>

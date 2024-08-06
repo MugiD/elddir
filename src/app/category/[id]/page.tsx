@@ -18,6 +18,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import DeleteCategory from "@/components/deleteCategory";
+import EditCategory from "@/components/editCategory";
 
 interface InfluencersProps {
   params: {
@@ -32,10 +34,9 @@ export default async function Influencers({ params }: InfluencersProps) {
       id: Number(params.id),
     },
     include: {
-        influencers: true
-    }
+      influencers: true,
+    },
   });
-
 
   const influencerWithId = createInfluencer.bind(null, params.id);
 
@@ -47,6 +48,8 @@ export default async function Influencers({ params }: InfluencersProps) {
           <CardDescription>{category?.description}</CardDescription>
         </CardHeader>
         {/* Add edit, and remove buttons */}
+        <EditCategory id={category?.id} title={category?.title} desc={category?.description}/>
+        <DeleteCategory id={category?.id} />
       </Card>
       <form action={influencerWithId} className="flex mt-4 justify-between">
         <Input
@@ -69,7 +72,11 @@ export default async function Influencers({ params }: InfluencersProps) {
         <TableBody>
           {category?.influencers.map((influencer) => (
             <TableRow key={influencer.id}>
-              <TableCell className="font-medium"><a href={`https://instagram.com/${influencer.username}`}>{influencer.username}</a></TableCell>
+              <TableCell className="font-medium">
+                <a href={`https://instagram.com/${influencer.username}`}>
+                  {influencer.username}
+                </a>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

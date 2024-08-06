@@ -2,6 +2,8 @@
 import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from 'next/navigation'
+import { revalidateTag } from 'next/cache'
 
 export async function createCategory(formData: FormData) {
     const user = await currentUser()
@@ -17,14 +19,29 @@ export async function createCategory(formData: FormData) {
     revalidatePath("/");
 }
 
-export async function deleteCategory(id: number) {
-    await prisma.category.delete({
+export async function editCategory(id: number, formData: FormData) {
+    await prisma.category.update({
         where: {
-            id,
+            id: Number(id),
+        },
+        data: {
+            title: formData.get("title") as string,
+            description: formData.get("description") as string,
         },
     });
 
-    revalidatePath("/");
+    revalidatePath(`/category/${id}`);
+}
+
+export async function deleteCategory(id: number) {
+    await prisma.category.delete({
+        where: {
+            id: Number(id),
+        },
+    });
+
+    revalidateTag(`/category`);
+    redirect("/");
 }
 
 export async function createInfluencer(categoryId: number, formData: FormData) {

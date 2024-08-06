@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "./ui/button";
 import {
   Dialog,
   DialogContent,
@@ -11,42 +11,44 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createCategory } from "@/actions/action";
+import { editCategory } from "@/actions/action";
 
-export default function Add() {
+export default function DeleteCategory({ id, title, desc }: any) {
+  const editCategoryById = editCategory.bind(null, id);
+
   return (
     <main>
       <Dialog>
         <DialogTrigger asChild>
           <Button className="w-full mt-4" size="sm">
-            Add Category
+            Edit Category
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Add category</DialogTitle>
+            <DialogTitle>Edit category</DialogTitle>
             <DialogDescription>
-              Fill out the form below to add a new category
+              Are you sure you want to edit this category?
             </DialogDescription>
           </DialogHeader>
-          <form action={createCategory}>
+          <form action={editCategoryById}>
             <div className="grid gap-5 py-4">
               <div className="flex flex-col gap-y-3">
                 <Label htmlFor="title">Title</Label>
-                <Input id="title" name="title" placeholder="Cooking" />
+                <Input id="title" name="title" defaultValue={title} />
               </div>
               <div className="flex flex-col gap-y-3">
                 <Label htmlFor="description">Description</Label>
                 <Input
                   id="description"
                   name="description"
-                  placeholder="my first category"
+                  defaultValue={desc}
                 />
               </div>
             </div>
             <DialogFooter>
               <DialogClose asChild>
-                <Button type="submit">Add</Button>
+                <Button type="submit">Edit</Button>
               </DialogClose>
             </DialogFooter>
           </form>
