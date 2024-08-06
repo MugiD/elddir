@@ -19,8 +19,9 @@ import {
 } from "@/components/ui/table";
 import DeleteCategory from "@/components/category/deleteCategory";
 import EditCategory from "@/components/category/editCategory";
+import DeleteAuthors from "@/components/category/deleteAuthors";
 import { createInfluencer } from "@/actions/action";
-
+import { deleteInfluencer } from "@/actions/action";
 
 interface InfluencersProps {
   params: {
@@ -59,7 +60,7 @@ export default async function Influencers({ params }: InfluencersProps) {
           </div>
         </CardHeader>
       </Card>
-      <form action={influencerWithId} className="flex mt-4 justify-between" >
+      <form action={influencerWithId} className="flex mt-4 justify-between">
         <Input
           id="influencer"
           name="influencer"
@@ -74,16 +75,20 @@ export default async function Influencers({ params }: InfluencersProps) {
       <Table className="mt-4">
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Username</TableHead>
+            <TableHead className="w-[50%]">Username</TableHead>
+            <TableHead className="w-[50%] text-right">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {category?.influencers.map((influencer) => (
             <TableRow key={influencer.id}>
-              <TableCell className="font-medium">
+              <TableCell className="font-medium w-[50%]">
                 <a href={`https://instagram.com/${influencer.username}`}>
-                  {influencer.username}
+                  @{influencer.username}
                 </a>
+              </TableCell>
+              <TableCell className="w-[50%] text-right font-medium">
+                <DeleteAuthors id={influencer.id} route={category?.id}/>
               </TableCell>
             </TableRow>
           ))}

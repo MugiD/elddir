@@ -30,7 +30,7 @@ export async function editCategory(id: number, formData: FormData) {
         },
     });
 
-    revalidatePath(`/category/${id}`);
+    revalidatePath("/category/[id]", "page");
 }
 
 export async function deleteCategory(id: number) {
@@ -43,7 +43,6 @@ export async function deleteCategory(id: number) {
     revalidateTag(`/category`);
     redirect("/");
 }
-
 
 export async function createInfluencer(categoryId: number, formData: FormData) {
 
@@ -58,5 +57,16 @@ export async function createInfluencer(categoryId: number, formData: FormData) {
         },
     });
 
-    revalidatePath(`/category/${categoryId}`);
+    revalidatePath("/category/[id]", "page");
+}
+
+export async function deleteInfluencer(id: number, route: number) {
+    await prisma.influencers.delete({
+        where: {
+            id: Number(id),
+        },
+    });
+
+    revalidatePath("/category/[id]", "page");
+    redirect(`/category/${route}`);
 }
