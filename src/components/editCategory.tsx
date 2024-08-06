@@ -1,3 +1,4 @@
+import { SquarePen } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -20,8 +21,8 @@ export default function DeleteCategory({ id, title, desc }: any) {
     <main>
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="w-full mt-4" size="sm">
-            Edit Category
+          <Button variant="ghost" size="sm">
+            <SquarePen />
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">

@@ -7,7 +7,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { createInfluencer } from "@/actions/action";
 import {
   Table,
   TableBody,
@@ -20,6 +19,7 @@ import {
 } from "@/components/ui/table";
 import DeleteCategory from "@/components/deleteCategory";
 import EditCategory from "@/components/editCategory";
+import { createInfluencer } from "@/actions/action";
 
 interface InfluencersProps {
   params: {
@@ -43,13 +43,20 @@ export default async function Influencers({ params }: InfluencersProps) {
   return (
     <main className="mt-4">
       <Card>
-        <CardHeader>
-          <CardTitle>{category?.title}</CardTitle>
-          <CardDescription>{category?.description}</CardDescription>
+        <CardHeader className="flex flex-row items-center justify-between">
+          <div>
+            <CardTitle>{category?.title}</CardTitle>
+            <CardDescription>{category?.description}</CardDescription>
+          </div>
+          <div className="flex flex-row items-center gap-2">
+            <EditCategory
+              id={category?.id}
+              title={category?.title}
+              desc={category?.description}
+            />
+            <DeleteCategory id={category?.id} />
+          </div>
         </CardHeader>
-        {/* Add edit, and remove buttons */}
-        <EditCategory id={category?.id} title={category?.title} desc={category?.description}/>
-        <DeleteCategory id={category?.id} />
       </Card>
       <form action={influencerWithId} className="flex mt-4 justify-between">
         <Input

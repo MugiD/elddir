@@ -1,3 +1,4 @@
+import { Trash } from 'lucide-react'
 import { Button } from "./ui/button";
 import {
     Dialog,
@@ -18,8 +19,8 @@ export default function DeleteCategory({id}: any) {
         <main>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button className="w-full mt-4" size="sm">
-                        Delete Category
+                    <Button variant="ghost" size="sm">
+                        <Trash />
                     </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
