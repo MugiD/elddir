@@ -39,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" className={`$inter.className max-w-md m-auto my-8`}>
+      <html lang="en" className={`$inter.className max-w-md m-auto my-8 p-4 sm:p-0`}>
         <body>
           <ThemeProvider
             attribute="class"
