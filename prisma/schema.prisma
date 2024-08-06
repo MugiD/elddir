@@ -14,6 +14,7 @@ datasource db {
 }
 
 //AFTER EVERY CHANGE IN THIS FILE, RUN `prisma db push` or `prisma migrate dev` TO UPDATE THE CLIENT
+// prisma migrate dev - will warn on potential data loss
 
 
 model Category {
