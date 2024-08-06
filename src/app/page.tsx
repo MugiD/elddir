@@ -1,4 +1,4 @@
-import Add from "@/components/add";
+import Add from "@/components/category/addCategory";
 import prisma from "@/lib/db";
 import {
   Card,

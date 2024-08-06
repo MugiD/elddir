@@ -17,9 +17,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import DeleteCategory from "@/components/deleteCategory";
-import EditCategory from "@/components/editCategory";
+import DeleteCategory from "@/components/category/deleteCategory";
+import EditCategory from "@/components/category/editCategory";
 import { createInfluencer } from "@/actions/action";
+
 
 interface InfluencersProps {
   params: {
@@ -58,7 +59,7 @@ export default async function Influencers({ params }: InfluencersProps) {
           </div>
         </CardHeader>
       </Card>
-      <form action={influencerWithId} className="flex mt-4 justify-between">
+      <form action={influencerWithId} className="flex mt-4 justify-between" >
         <Input
           id="influencer"
           name="influencer"

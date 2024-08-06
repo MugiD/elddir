@@ -44,7 +44,9 @@ export async function deleteCategory(id: number) {
     redirect("/");
 }
 
+
 export async function createInfluencer(categoryId: number, formData: FormData) {
+
     await prisma.influencers.create({
         data: {
             username: formData.get("influencer") as string,
