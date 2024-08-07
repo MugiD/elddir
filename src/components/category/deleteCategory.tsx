@@ -19,7 +19,7 @@ export default function DeleteCategory({id}: any) {
         <main>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button variant="destructive" size="sm" className='h-full w-[10%] absolute right-0 top-0 rounded-l-none'>
+                    <Button variant="destructive" size="sm" className='h-full sm:w-[10%] w-[15%] absolute right-0 top-0 rounded-l-none'>
                         <Trash />
                     </Button>
                 </DialogTrigger>

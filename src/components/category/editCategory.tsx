@@ -21,7 +21,7 @@ export default function DeleteCategory({ id, title, desc }: any) {
     <main>
       <Dialog>
         <DialogTrigger asChild>
-          <Button size="sm" variant="unique" className='h-full w-[10%] absolute right-[10%] top-0 rounded-none'>
+          <Button size="sm" variant="unique" className='h-full sm:w-[10%] w-[15%] absolute sm:right-[10%] right-[15%] top-0 rounded-none'>
             <SquarePen />
           </Button>
         </DialogTrigger>
