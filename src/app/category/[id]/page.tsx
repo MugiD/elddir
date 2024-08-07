@@ -5,8 +5,6 @@ import {
   CardTitle,
   CardHeader,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -21,7 +19,7 @@ import DeleteCategory from "@/components/category/deleteCategory";
 import EditCategory from "@/components/category/editCategory";
 import DeleteAuthors from "@/components/category/deleteAuthors";
 import { createInfluencer } from "@/actions/action";
-import { deleteInfluencer } from "@/actions/action";
+import AddAuthor from "@/components/category/addAuthor";
 
 interface InfluencersProps {
   params: {
@@ -40,11 +38,9 @@ export default async function Influencers({ params }: InfluencersProps) {
         orderBy: {
           createdAt: "desc",
         },
-      }
+      },
     },
   });
-
-  const influencerWithId = createInfluencer.bind(null, params.id);
 
   return (
     <main className="mt-4">
@@ -64,18 +60,7 @@ export default async function Influencers({ params }: InfluencersProps) {
           </div>
         </CardHeader>
       </Card>
-      <form action={influencerWithId} className="flex mt-4 justify-between">
-        <Input
-          id="influencer"
-          name="influencer"
-          placeholder="username..."
-          className="w-[75%]"
-        />
-        <Button className="w-[20%]" type="submit">
-          Add
-        </Button>
-      </form>
-
+      <AddAuthor categoryId={category?.id} />
       <Table className="mt-4">
         <TableHeader>
           <TableRow>
@@ -92,7 +77,7 @@ export default async function Influencers({ params }: InfluencersProps) {
                 </a>
               </TableCell>
               <TableCell className="w-[50%] text-right font-medium">
-                <DeleteAuthors id={influencer.id} route={category?.id}/>
+                <DeleteAuthors id={influencer.id} route={category?.id} />
               </TableCell>
             </TableRow>
           ))}
