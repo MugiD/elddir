@@ -48,7 +48,7 @@ export default async function Influencers({ params }: InfluencersProps) {
 
   return (
     <main className="mt-4">
-      <Card>
+      <Card className="relative">
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
             <CardTitle>{category?.title}</CardTitle>
