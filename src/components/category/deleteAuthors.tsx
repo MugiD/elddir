@@ -24,9 +24,9 @@ export default function DeleteAuthors({ id, route }: any) {
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Delete category</DialogTitle>
+            <DialogTitle>Delete author</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete this category?
+              Are you sure you want to delete this author?
             </DialogDescription>
           </DialogHeader>
           <form action={deleteInfluencerWithId}>
