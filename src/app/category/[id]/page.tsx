@@ -36,7 +36,11 @@ export default async function Influencers({ params }: InfluencersProps) {
       id: Number(params.id),
     },
     include: {
-      influencers: true,
+      influencers: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      }
     },
   });
 
