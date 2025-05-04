@@ -1,5 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## TODO
+- implement ai to give a summary on what the page of user's followings are about
+
 ## Getting Started
 
 First, run the development server:
