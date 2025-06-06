@@ -2,6 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## TODO
 - implement ai to give a summary on what the page of user's followings are about
+- create a chrome extension
 
 ## Getting Started
 
